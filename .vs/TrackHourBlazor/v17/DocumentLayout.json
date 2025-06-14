@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{970E244B-2B0C-479D-9AAA-62E52AFC7C3C}|Server\\TrackHourBlazor.Server.csproj|c:\\users\\home\\documents\\github\\diplomapp\\server\\models\\workloadentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{970E244B-2B0C-479D-9AAA-62E52AFC7C3C}|Server\\TrackHourBlazor.Server.csproj|solutionrelative:server\\models\\workloadentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{970E244B-2B0C-479D-9AAA-62E52AFC7C3C}|Server\\TrackHourBlazor.Server.csproj|c:\\users\\home\\documents\\github\\diplomapp\\server\\models\\teacher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{970E244B-2B0C-479D-9AAA-62E52AFC7C3C}|Server\\TrackHourBlazor.Server.csproj|solutionrelative:server\\models\\teacher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{970E244B-2B0C-479D-9AAA-62E52AFC7C3C}|Server\\TrackHourBlazor.Server.csproj|c:\\users\\home\\documents\\github\\diplomapp\\server\\trackhourblazor.server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{970E244B-2B0C-479D-9AAA-62E52AFC7C3C}|Server\\TrackHourBlazor.Server.csproj|solutionrelative:server\\trackhourblazor.server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{970E244B-2B0C-479D-9AAA-62E52AFC7C3C}|Server\\TrackHourBlazor.Server.csproj|c:\\users\\home\\documents\\github\\diplomapp\\server\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{970E244B-2B0C-479D-9AAA-62E52AFC7C3C}|Server\\TrackHourBlazor.Server.csproj|solutionrelative:server\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{970E244B-2B0C-479D-9AAA-62E52AFC7C3C}|Server\\TrackHourBlazor.Server.csproj|c:\\users\\home\\documents\\github\\diplomapp\\server\\controllers\\uploadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{970E244B-2B0C-479D-9AAA-62E52AFC7C3C}|Server\\TrackHourBlazor.Server.csproj|solutionrelative:server\\controllers\\uploadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WorkloadEntry.cs",
+              "DocumentMoniker": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\Server\\Models\\WorkloadEntry.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\WorkloadEntry.cs",
+              "ToolTip": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\Server\\Models\\WorkloadEntry.cs",
+              "RelativeToolTip": "Server\\Models\\WorkloadEntry.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T11:47:35.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Teacher.cs",
+              "DocumentMoniker": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\Server\\Models\\Teacher.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\Teacher.cs",
+              "ToolTip": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\Server\\Models\\Teacher.cs",
+              "RelativeToolTip": "Server\\Models\\Teacher.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T11:46:08.34Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TrackHourBlazor.Server",
+              "DocumentMoniker": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\Server\\TrackHourBlazor.Server.csproj",
+              "RelativeDocumentMoniker": "Server\\TrackHourBlazor.Server.csproj",
+              "ToolTip": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\Server\\TrackHourBlazor.Server.csproj",
+              "RelativeToolTip": "Server\\TrackHourBlazor.Server.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-14T11:40:45.561Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ReportController.cs",
+              "DocumentMoniker": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\Server\\Controllers\\ReportController.cs",
+              "RelativeDocumentMoniker": "Server\\Controllers\\ReportController.cs",
+              "ToolTip": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\Server\\Controllers\\ReportController.cs",
+              "RelativeToolTip": "Server\\Controllers\\ReportController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACAAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T11:34:26.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UploadController.cs",
+              "DocumentMoniker": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\Server\\Controllers\\UploadController.cs",
+              "RelativeDocumentMoniker": "Server\\Controllers\\UploadController.cs",
+              "ToolTip": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\Server\\Controllers\\UploadController.cs",
+              "RelativeToolTip": "Server\\Controllers\\UploadController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T11:34:25.582Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
