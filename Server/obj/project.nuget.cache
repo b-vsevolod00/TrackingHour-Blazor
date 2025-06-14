@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rUMLeianEHY=",
+  "dgSpecHash": "333rVCiOBjw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\Server\\TrackHourBlazor.Server.csproj",
+  "projectFilePath": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\TrackingHour-Blazor\\Server\\TrackHourBlazor.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\home\\.nuget\\packages\\documentformat.openxml\\2.20.0\\documentformat.openxml.2.20.0.nupkg.sha512",
     "C:\\Users\\home\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

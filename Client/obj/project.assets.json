@@ -2613,11 +2613,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\Client\\TrackHourBlazor.Client.csproj",
+      "projectUniqueName": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\TrackingHour-Blazor\\Client\\TrackHourBlazor.Client.csproj",
       "projectName": "TrackHourBlazor.Client",
-      "projectPath": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\Client\\TrackHourBlazor.Client.csproj",
+      "projectPath": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\TrackingHour-Blazor\\Client\\TrackHourBlazor.Client.csproj",
       "packagesPath": "C:\\Users\\home\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\Client\\obj\\",
+      "outputPath": "C:\\Users\\home\\Documents\\GitHub\\DiplomApp\\TrackingHour-Blazor\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
