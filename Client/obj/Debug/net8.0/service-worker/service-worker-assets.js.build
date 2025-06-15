@@ -1,5 +1,5 @@
 self.assetsManifest = {
-  "version": "JSp4KYjt",
+  "version": "3DMFFrcc",
   "assets": [
     {
       "hash": "sha256-szYZJI0jDnC2SUYHJHWR1zxzQ1bKw3G12Sq28LOGpCw=",
@@ -938,11 +938,11 @@ self.assetsManifest = {
       "url": "_framework/System.wasm"
     },
     {
-      "hash": "sha256-v0pMmApCxuq3JgLWi2qAZPWCAhfPN1ioAJ4SsVzu978=",
+      "hash": "sha256-d9xIk+lgpSvwWyLwTunX7eXNjgKgKE5K3300rx6MCxw=",
       "url": "_framework/TrackHourBlazor.Client.pdb"
     },
     {
-      "hash": "sha256-t7lEtehDZOl5jPSxRuxDJxKmmJHbGVo+PsKRzu7GDKY=",
+      "hash": "sha256-d0Mb2+tJT/XIQN6LUYYI9Z2Hy//n/JxSGgRP/LTpU6E=",
       "url": "_framework/TrackHourBlazor.Client.wasm"
     },
     {
@@ -950,7 +950,7 @@ self.assetsManifest = {
       "url": "_framework/WindowsBase.wasm"
     },
     {
-      "hash": "sha256-GjFdylqmtwy1cTvEAbFd9rlo5H0pHCCGDw4Z1T1tqp4=",
+      "hash": "sha256-I7hGi37DXwTtrQpk7+UPx64cfOP/jMkBrYDf6BibaFI=",
       "url": "_framework/blazor.boot.json"
     },
     {

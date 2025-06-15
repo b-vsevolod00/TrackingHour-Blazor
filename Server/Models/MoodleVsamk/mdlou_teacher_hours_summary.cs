@@ -7,8 +7,8 @@ using System.Text.Json.Serialization;
 
 namespace TrackHourBlazor.Server.Models.moodle_vsamk
 {
-    [Table("mdlou_cohort")]
-    public partial class mdlou_cohort
+    [Table("mdlou_teacher_hours_summary")]
+    public partial class mdlou_teacher_hours_summary
     {
 
         [NotMapped]
@@ -26,38 +26,53 @@ namespace TrackHourBlazor.Server.Models.moodle_vsamk
 
         [Required]
         [ConcurrencyCheck]
-        public long contextid { get; set; }
+        public long teacher_id { get; set; }
+
+        public mdlou_user teacher { get; set; }
 
         [Required]
         [ConcurrencyCheck]
-        public string name { get; set; }
+        public long course_id { get; set; }
 
-        [ConcurrencyCheck]
-        public string idnumber { get; set; }
-
-        [ConcurrencyCheck]
-        public string description { get; set; }
+        public mdlou_course course { get; set; }
 
         [Required]
         [ConcurrencyCheck]
-        public sbyte descriptionformat { get; set; }
+        public string academic_year { get; set; }
 
         [ConcurrencyCheck]
-        public bool visible { get; set; }
-
-        [Required]
-        [ConcurrencyCheck]
-        public string component { get; set; }
+        public bool semester { get; set; }
 
         [Required]
         [ConcurrencyCheck]
-        public long timecreated { get; set; }
+        public sbyte month { get; set; }
 
         [Required]
         [ConcurrencyCheck]
-        public long timemodified { get; set; }
+        public decimal actual_lecture_hours { get; set; }
 
+        [Required]
         [ConcurrencyCheck]
-        public string theme { get; set; }
+        public decimal actual_practice_hours { get; set; }
+
+        [Required]
+        [ConcurrencyCheck]
+        public decimal actual_lab_hours { get; set; }
+
+        [Required]
+        [ConcurrencyCheck]
+        public decimal actual_consultation_hours { get; set; }
+
+        [Required]
+        [ConcurrencyCheck]
+        public decimal actual_exam_hours { get; set; }
+
+        [Required]
+        [ConcurrencyCheck]
+        public decimal actual_total_hours { get; set; }
+
+        [Required]
+        [ConcurrencyCheck]
+        public DateTime last_updated { get; set; }
     }
 }

@@ -22,6 +22,48 @@ namespace TrackHourBlazor.Server.Data
         {
             base.OnModelCreating(builder);
 
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour>()
+              .HasOne(i => i.course)
+              .WithMany(i => i.mdlou_teacher_hours)
+              .HasForeignKey(i => i.course_id)
+              .HasPrincipalKey(i => i.id);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour>()
+              .HasOne(i => i.group)
+              .WithMany(i => i.mdlou_teacher_hours)
+              .HasForeignKey(i => i.group_id)
+              .HasPrincipalKey(i => i.id);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour>()
+              .HasOne(i => i.teacher)
+              .WithMany(i => i.mdlou_teacher_hours)
+              .HasForeignKey(i => i.teacher_id)
+              .HasPrincipalKey(i => i.id);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary>()
+              .HasOne(i => i.course)
+              .WithMany(i => i.mdlou_teacher_hours_summaries)
+              .HasForeignKey(i => i.course_id)
+              .HasPrincipalKey(i => i.id);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary>()
+              .HasOne(i => i.teacher)
+              .WithMany(i => i.mdlou_teacher_hours_summaries)
+              .HasForeignKey(i => i.teacher_id)
+              .HasPrincipalKey(i => i.id);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload>()
+              .HasOne(i => i.course)
+              .WithMany(i => i.mdlou_teacher_workloads)
+              .HasForeignKey(i => i.course_id)
+              .HasPrincipalKey(i => i.id);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload>()
+              .HasOne(i => i.teacher)
+              .WithMany(i => i.mdlou_teacher_workloads)
+              .HasForeignKey(i => i.teacher_id)
+              .HasPrincipalKey(i => i.id);
+
             builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_cohort>()
               .Property(p => p.visible)
               .HasDefaultValueSql(@"'1'");
@@ -141,6 +183,74 @@ namespace TrackHourBlazor.Server.Data
             builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_user>()
               .Property(p => p.autosubscribe)
               .HasDefaultValueSql(@"'1'");
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour>()
+              .Property(p => p.hours_count)
+              .HasDefaultValueSql(@"'2.0'");
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour>()
+              .Property(p => p.status)
+              .HasDefaultValueSql(@"'1'");
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour>()
+              .Property(p => p.approved_at)
+              .HasColumnType("datetime");
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary>()
+              .Property(p => p.last_updated)
+              .HasColumnType("datetime");
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour>()
+              .Property(p => p.hours_count)
+              .HasPrecision(3,1);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary>()
+              .Property(p => p.actual_lecture_hours)
+              .HasPrecision(5,1);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary>()
+              .Property(p => p.actual_practice_hours)
+              .HasPrecision(5,1);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary>()
+              .Property(p => p.actual_lab_hours)
+              .HasPrecision(5,1);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary>()
+              .Property(p => p.actual_consultation_hours)
+              .HasPrecision(5,1);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary>()
+              .Property(p => p.actual_exam_hours)
+              .HasPrecision(5,1);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary>()
+              .Property(p => p.actual_total_hours)
+              .HasPrecision(5,1);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload>()
+              .Property(p => p.planned_lecture_hours)
+              .HasPrecision(5,1);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload>()
+              .Property(p => p.planned_practice_hours)
+              .HasPrecision(5,1);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload>()
+              .Property(p => p.planned_lab_hours)
+              .HasPrecision(5,1);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload>()
+              .Property(p => p.planned_consultation_hours)
+              .HasPrecision(5,1);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload>()
+              .Property(p => p.planned_exam_hours)
+              .HasPrecision(5,1);
+
+            builder.Entity<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload>()
+              .Property(p => p.planned_total_hours)
+              .HasPrecision(5,1);
             this.OnModelBuilding(builder);
         }
 
@@ -151,6 +261,12 @@ namespace TrackHourBlazor.Server.Data
         public DbSet<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_group> mdlou_groups { get; set; }
 
         public DbSet<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_user> mdlou_users { get; set; }
+
+        public DbSet<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour> mdlou_teacher_hours { get; set; }
+
+        public DbSet<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary> mdlou_teacher_hours_summaries { get; set; }
+
+        public DbSet<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload> mdlou_teacher_workloads { get; set; }
 
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
         {

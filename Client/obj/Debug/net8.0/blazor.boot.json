@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "TrackHourBlazor.Client",
   "resources": {
-    "hash": "sha256-kNqThkS+OhbNS4L0uq0fAa7nAwUMmxqYZF+42UEiCzw=",
+    "hash": "sha256-JYYVHB4AD2vmO0K1lMJZBKwU4DrEHMuURccP78T1tfU=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-YyxJV6dv935qHoQAmjB+2qRjHeGpm4SyWxE0T/KvsIE="
     },
@@ -216,10 +216,10 @@
       "mscorlib.wasm": "sha256-flmBXVpp8uDpWBNEJuRkqo3Qnir1KADo5a1rCQISkPs=",
       "netstandard.wasm": "sha256-iuCVrIBmiGbXpNVvYkBmSt16BNEjbbD82vYrtHimftc=",
       "System.Private.CoreLib.wasm": "sha256-1Xa/xaUoA/iRxpDqZPUUzL8QaTawkoJLhGmxtRv9ZJI=",
-      "TrackHourBlazor.Client.wasm": "sha256-t7lEtehDZOl5jPSxRuxDJxKmmJHbGVo+PsKRzu7GDKY="
+      "TrackHourBlazor.Client.wasm": "sha256-d0Mb2+tJT/XIQN6LUYYI9Z2Hy//n/JxSGgRP/LTpU6E="
     },
     "pdb": {
-      "TrackHourBlazor.Client.pdb": "sha256-v0pMmApCxuq3JgLWi2qAZPWCAhfPN1ioAJ4SsVzu978="
+      "TrackHourBlazor.Client.pdb": "sha256-d9xIk+lgpSvwWyLwTunX7eXNjgKgKE5K3300rx6MCxw="
     }
   },
   "cacheBootResources": true,

@@ -2137,9 +2137,6 @@ C:\Users\home\Documents\GitHub\DiplomApp\TrackingHour-Blazor\Client\obj\Debug\ne
 C:\Users\home\Documents\GitHub\DiplomApp\TrackingHour-Blazor\Client\obj\Debug\net8.0\compressed\x68vz7con1-nmlfvbueei.gz
 C:\Users\home\Documents\GitHub\DiplomApp\TrackingHour-Blazor\Client\obj\Debug\net8.0\compressed\xmnh9xfi3v-oh1zvcfom8.gz
 C:\Users\home\Documents\GitHub\DiplomApp\TrackingHour-Blazor\Client\obj\Debug\net8.0\compressed\cwurpqijb5-oyz0vx2fzb.gz
-C:\Users\home\Documents\GitHub\DiplomApp\TrackingHour-Blazor\Client\obj\Debug\net8.0\compressed\dfv6vpk0s5-n457orcyoy.gz
-C:\Users\home\Documents\GitHub\DiplomApp\TrackingHour-Blazor\Client\obj\Debug\net8.0\compressed\vn7k18fviq-h0j09nnard.gz
-C:\Users\home\Documents\GitHub\DiplomApp\TrackingHour-Blazor\Client\obj\Debug\net8.0\compressed\agkytdi6xa-ajvpf5g72l.gz
 C:\Users\home\Documents\GitHub\DiplomApp\TrackingHour-Blazor\Client\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\home\Documents\GitHub\DiplomApp\TrackingHour-Blazor\Client\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\home\Documents\GitHub\DiplomApp\TrackingHour-Blazor\Client\obj\Debug\net8.0\staticwebassets.development.json
@@ -2149,3 +2146,6 @@ C:\Users\home\Documents\GitHub\DiplomApp\TrackingHour-Blazor\Client\obj\Debug\ne
 C:\Users\home\Documents\GitHub\DiplomApp\TrackingHour-Blazor\Client\obj\Debug\net8.0\refint\TrackHourBlazor.Client.dll
 C:\Users\home\Documents\GitHub\DiplomApp\TrackingHour-Blazor\Client\obj\Debug\net8.0\TrackHourBlazor.Client.pdb
 C:\Users\home\Documents\GitHub\DiplomApp\TrackingHour-Blazor\Client\obj\Debug\net8.0\ref\TrackHourBlazor.Client.dll
+C:\Users\home\Documents\GitHub\DiplomApp\TrackingHour-Blazor\Client\obj\Debug\net8.0\compressed\dfv6vpk0s5-l5skp6are4.gz
+C:\Users\home\Documents\GitHub\DiplomApp\TrackingHour-Blazor\Client\obj\Debug\net8.0\compressed\vn7k18fviq-dnw5znrm91.gz
+C:\Users\home\Documents\GitHub\DiplomApp\TrackingHour-Blazor\Client\obj\Debug\net8.0\compressed\agkytdi6xa-tshr1p5n37.gz

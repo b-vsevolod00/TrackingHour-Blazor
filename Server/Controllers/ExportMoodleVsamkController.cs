@@ -74,5 +74,47 @@ namespace TrackHourBlazor.Server.Controllers
         {
             return ToExcel(ApplyQuery(await service.Getmdlou_users(), Request.Query, false), fileName);
         }
+
+        [HttpGet("/export/moodle_vsamk/mdlou_teacher_hours/csv")]
+        [HttpGet("/export/moodle_vsamk/mdlou_teacher_hours/csv(fileName='{fileName}')")]
+        public async Task<FileStreamResult> Exportmdlou_teacher_hoursToCSV(string fileName = null)
+        {
+            return ToCSV(ApplyQuery(await service.Getmdlou_teacher_hours(), Request.Query, false), fileName);
+        }
+
+        [HttpGet("/export/moodle_vsamk/mdlou_teacher_hours/excel")]
+        [HttpGet("/export/moodle_vsamk/mdlou_teacher_hours/excel(fileName='{fileName}')")]
+        public async Task<FileStreamResult> Exportmdlou_teacher_hoursToExcel(string fileName = null)
+        {
+            return ToExcel(ApplyQuery(await service.Getmdlou_teacher_hours(), Request.Query, false), fileName);
+        }
+
+        [HttpGet("/export/moodle_vsamk/mdlou_teacher_hours_summaries/csv")]
+        [HttpGet("/export/moodle_vsamk/mdlou_teacher_hours_summaries/csv(fileName='{fileName}')")]
+        public async Task<FileStreamResult> Exportmdlou_teacher_hours_summariesToCSV(string fileName = null)
+        {
+            return ToCSV(ApplyQuery(await service.Getmdlou_teacher_hours_summaries(), Request.Query, false), fileName);
+        }
+
+        [HttpGet("/export/moodle_vsamk/mdlou_teacher_hours_summaries/excel")]
+        [HttpGet("/export/moodle_vsamk/mdlou_teacher_hours_summaries/excel(fileName='{fileName}')")]
+        public async Task<FileStreamResult> Exportmdlou_teacher_hours_summariesToExcel(string fileName = null)
+        {
+            return ToExcel(ApplyQuery(await service.Getmdlou_teacher_hours_summaries(), Request.Query, false), fileName);
+        }
+
+        [HttpGet("/export/moodle_vsamk/mdlou_teacher_workloads/csv")]
+        [HttpGet("/export/moodle_vsamk/mdlou_teacher_workloads/csv(fileName='{fileName}')")]
+        public async Task<FileStreamResult> Exportmdlou_teacher_workloadsToCSV(string fileName = null)
+        {
+            return ToCSV(ApplyQuery(await service.Getmdlou_teacher_workloads(), Request.Query, false), fileName);
+        }
+
+        [HttpGet("/export/moodle_vsamk/mdlou_teacher_workloads/excel")]
+        [HttpGet("/export/moodle_vsamk/mdlou_teacher_workloads/excel(fileName='{fileName}')")]
+        public async Task<FileStreamResult> Exportmdlou_teacher_workloadsToExcel(string fileName = null)
+        {
+            return ToExcel(ApplyQuery(await service.Getmdlou_teacher_workloads(), Request.Query, false), fileName);
+        }
     }
 }

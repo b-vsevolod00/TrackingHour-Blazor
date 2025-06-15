@@ -7,8 +7,8 @@ using System.Text.Json.Serialization;
 
 namespace TrackHourBlazor.Server.Models.moodle_vsamk
 {
-    [Table("mdlou_groups")]
-    public partial class mdlou_group
+    [Table("mdlou_teacher_workload")]
+    public partial class mdlou_teacher_workload
     {
 
         [NotMapped]
@@ -26,28 +26,53 @@ namespace TrackHourBlazor.Server.Models.moodle_vsamk
 
         [Required]
         [ConcurrencyCheck]
-        public long courseid { get; set; }
+        public long teacher_id { get; set; }
 
-        [ConcurrencyCheck]
-        public string idnumber { get; set; }
-
-        [Required]
-        [ConcurrencyCheck]
-        public string name { get; set; }
-
-        [ConcurrencyCheck]
-        public string description { get; set; }
+        public mdlou_user teacher { get; set; }
 
         [Required]
         [ConcurrencyCheck]
-        public sbyte descriptionformat { get; set; }
+        public long course_id { get; set; }
 
-        [ConcurrencyCheck]
-        public string enrolmentkey { get; set; }
+        public mdlou_course course { get; set; }
 
         [Required]
         [ConcurrencyCheck]
-        public long picture { get; set; }
+        public string academic_year { get; set; }
+
+        [ConcurrencyCheck]
+        public bool semester { get; set; }
+
+        [Required]
+        [ConcurrencyCheck]
+        public decimal planned_lecture_hours { get; set; }
+
+        [Required]
+        [ConcurrencyCheck]
+        public decimal planned_practice_hours { get; set; }
+
+        [Required]
+        [ConcurrencyCheck]
+        public decimal planned_lab_hours { get; set; }
+
+        [Required]
+        [ConcurrencyCheck]
+        public decimal planned_consultation_hours { get; set; }
+
+        [Required]
+        [ConcurrencyCheck]
+        public decimal planned_exam_hours { get; set; }
+
+        [Required]
+        [ConcurrencyCheck]
+        public decimal planned_total_hours { get; set; }
+
+        [ConcurrencyCheck]
+        public string notes { get; set; }
+
+        [Required]
+        [ConcurrencyCheck]
+        public long created_by { get; set; }
 
         [Required]
         [ConcurrencyCheck]
@@ -56,7 +81,5 @@ namespace TrackHourBlazor.Server.Models.moodle_vsamk
         [Required]
         [ConcurrencyCheck]
         public long timemodified { get; set; }
-
-        public ICollection<mdlou_teacher_hour> mdlou_teacher_hours { get; set; }
     }
 }

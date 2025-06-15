@@ -363,6 +363,9 @@ namespace TrackHourBlazor.Server
         {
             var itemToDelete = Context.mdlou_courses
                               .Where(i => i.id == id)
+                              .Include(i => i.mdlou_teacher_hours)
+                              .Include(i => i.mdlou_teacher_hours_summaries)
+                              .Include(i => i.mdlou_teacher_workloads)
                               .FirstOrDefault();
 
             if (itemToDelete == null)
@@ -524,6 +527,7 @@ namespace TrackHourBlazor.Server
         {
             var itemToDelete = Context.mdlou_groups
                               .Where(i => i.id == id)
+                              .Include(i => i.mdlou_teacher_hours)
                               .FirstOrDefault();
 
             if (itemToDelete == null)
@@ -685,6 +689,9 @@ namespace TrackHourBlazor.Server
         {
             var itemToDelete = Context.mdlou_users
                               .Where(i => i.id == id)
+                              .Include(i => i.mdlou_teacher_hours)
+                              .Include(i => i.mdlou_teacher_hours_summaries)
+                              .Include(i => i.mdlou_teacher_workloads)
                               .FirstOrDefault();
 
             if (itemToDelete == null)
@@ -708,6 +715,503 @@ namespace TrackHourBlazor.Server
             }
 
             OnAftermdlou_userDeleted(itemToDelete);
+
+            return itemToDelete;
+        }
+    
+        public async Task Exportmdlou_teacher_hoursToExcel(Query query = null, string fileName = null)
+        {
+            navigationManager.NavigateTo(query != null ? query.ToUrl($"export/moodle_vsamk/mdlou_teacher_hours/excel(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')") : $"export/moodle_vsamk/mdlou_teacher_hours/excel(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')", true);
+        }
+
+        public async Task Exportmdlou_teacher_hoursToCSV(Query query = null, string fileName = null)
+        {
+            navigationManager.NavigateTo(query != null ? query.ToUrl($"export/moodle_vsamk/mdlou_teacher_hours/csv(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')") : $"export/moodle_vsamk/mdlou_teacher_hours/csv(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')", true);
+        }
+
+        partial void Onmdlou_teacher_hoursRead(ref IQueryable<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour> items);
+
+        public async Task<IQueryable<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour>> Getmdlou_teacher_hours(Query query = null)
+        {
+            var items = Context.mdlou_teacher_hours.AsQueryable();
+
+            items = items.Include(i => i.course);
+            items = items.Include(i => i.group);
+            items = items.Include(i => i.teacher);
+
+            if (query != null)
+            {
+                if (!string.IsNullOrEmpty(query.Expand))
+                {
+                    var propertiesToExpand = query.Expand.Split(',');
+                    foreach(var p in propertiesToExpand)
+                    {
+                        items = items.Include(p.Trim());
+                    }
+                }
+
+                ApplyQuery(ref items, query);
+            }
+
+            Onmdlou_teacher_hoursRead(ref items);
+
+            return await Task.FromResult(items);
+        }
+
+        partial void Onmdlou_teacher_hourGet(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour item);
+        partial void OnGetmdlou_teacher_hourById(ref IQueryable<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour> items);
+
+
+        public async Task<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour> Getmdlou_teacher_hourById(long id)
+        {
+            var items = Context.mdlou_teacher_hours
+                              .AsNoTracking()
+                              .Where(i => i.id == id);
+
+            items = items.Include(i => i.course);
+            items = items.Include(i => i.group);
+            items = items.Include(i => i.teacher);
+ 
+            OnGetmdlou_teacher_hourById(ref items);
+
+            var itemToReturn = items.FirstOrDefault();
+
+            Onmdlou_teacher_hourGet(itemToReturn);
+
+            return await Task.FromResult(itemToReturn);
+        }
+
+        partial void Onmdlou_teacher_hourCreated(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour item);
+        partial void OnAftermdlou_teacher_hourCreated(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour item);
+
+        public async Task<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour> Createmdlou_teacher_hour(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour mdlouteacherhour)
+        {
+            Onmdlou_teacher_hourCreated(mdlouteacherhour);
+
+            var existingItem = Context.mdlou_teacher_hours
+                              .Where(i => i.id == mdlouteacherhour.id)
+                              .FirstOrDefault();
+
+            if (existingItem != null)
+            {
+               throw new Exception("Item already available");
+            }            
+
+            try
+            {
+                Context.mdlou_teacher_hours.Add(mdlouteacherhour);
+                Context.SaveChanges();
+            }
+            catch
+            {
+                Context.Entry(mdlouteacherhour).State = EntityState.Detached;
+                throw;
+            }
+
+            OnAftermdlou_teacher_hourCreated(mdlouteacherhour);
+
+            return mdlouteacherhour;
+        }
+
+        public async Task<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour> Cancelmdlou_teacher_hourChanges(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour item)
+        {
+            var entityToCancel = Context.Entry(item);
+            if (entityToCancel.State == EntityState.Modified)
+            {
+              entityToCancel.CurrentValues.SetValues(entityToCancel.OriginalValues);
+              entityToCancel.State = EntityState.Unchanged;
+            }
+
+            return item;
+        }
+
+        partial void Onmdlou_teacher_hourUpdated(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour item);
+        partial void OnAftermdlou_teacher_hourUpdated(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour item);
+
+        public async Task<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour> Updatemdlou_teacher_hour(long id, TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour mdlouteacherhour)
+        {
+            Onmdlou_teacher_hourUpdated(mdlouteacherhour);
+
+            var itemToUpdate = Context.mdlou_teacher_hours
+                              .Where(i => i.id == mdlouteacherhour.id)
+                              .FirstOrDefault();
+
+            if (itemToUpdate == null)
+            {
+               throw new Exception("Item no longer available");
+            }
+                
+            var entryToUpdate = Context.Entry(itemToUpdate);
+            entryToUpdate.CurrentValues.SetValues(mdlouteacherhour);
+            entryToUpdate.State = EntityState.Modified;
+
+            Context.SaveChanges();
+
+            OnAftermdlou_teacher_hourUpdated(mdlouteacherhour);
+
+            return mdlouteacherhour;
+        }
+
+        partial void Onmdlou_teacher_hourDeleted(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour item);
+        partial void OnAftermdlou_teacher_hourDeleted(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour item);
+
+        public async Task<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour> Deletemdlou_teacher_hour(long id)
+        {
+            var itemToDelete = Context.mdlou_teacher_hours
+                              .Where(i => i.id == id)
+                              .FirstOrDefault();
+
+            if (itemToDelete == null)
+            {
+               throw new Exception("Item no longer available");
+            }
+
+            Onmdlou_teacher_hourDeleted(itemToDelete);
+
+
+            Context.mdlou_teacher_hours.Remove(itemToDelete);
+
+            try
+            {
+                Context.SaveChanges();
+            }
+            catch
+            {
+                Context.Entry(itemToDelete).State = EntityState.Unchanged;
+                throw;
+            }
+
+            OnAftermdlou_teacher_hourDeleted(itemToDelete);
+
+            return itemToDelete;
+        }
+    
+        public async Task Exportmdlou_teacher_hours_summariesToExcel(Query query = null, string fileName = null)
+        {
+            navigationManager.NavigateTo(query != null ? query.ToUrl($"export/moodle_vsamk/mdlou_teacher_hours_summaries/excel(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')") : $"export/moodle_vsamk/mdlou_teacher_hours_summaries/excel(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')", true);
+        }
+
+        public async Task Exportmdlou_teacher_hours_summariesToCSV(Query query = null, string fileName = null)
+        {
+            navigationManager.NavigateTo(query != null ? query.ToUrl($"export/moodle_vsamk/mdlou_teacher_hours_summaries/csv(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')") : $"export/moodle_vsamk/mdlou_teacher_hours_summaries/csv(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')", true);
+        }
+
+        partial void Onmdlou_teacher_hours_summariesRead(ref IQueryable<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary> items);
+
+        public async Task<IQueryable<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary>> Getmdlou_teacher_hours_summaries(Query query = null)
+        {
+            var items = Context.mdlou_teacher_hours_summaries.AsQueryable();
+
+            items = items.Include(i => i.course);
+            items = items.Include(i => i.teacher);
+
+            if (query != null)
+            {
+                if (!string.IsNullOrEmpty(query.Expand))
+                {
+                    var propertiesToExpand = query.Expand.Split(',');
+                    foreach(var p in propertiesToExpand)
+                    {
+                        items = items.Include(p.Trim());
+                    }
+                }
+
+                ApplyQuery(ref items, query);
+            }
+
+            Onmdlou_teacher_hours_summariesRead(ref items);
+
+            return await Task.FromResult(items);
+        }
+
+        partial void Onmdlou_teacher_hours_summaryGet(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary item);
+        partial void OnGetmdlou_teacher_hours_summaryById(ref IQueryable<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary> items);
+
+
+        public async Task<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary> Getmdlou_teacher_hours_summaryById(long id)
+        {
+            var items = Context.mdlou_teacher_hours_summaries
+                              .AsNoTracking()
+                              .Where(i => i.id == id);
+
+            items = items.Include(i => i.course);
+            items = items.Include(i => i.teacher);
+ 
+            OnGetmdlou_teacher_hours_summaryById(ref items);
+
+            var itemToReturn = items.FirstOrDefault();
+
+            Onmdlou_teacher_hours_summaryGet(itemToReturn);
+
+            return await Task.FromResult(itemToReturn);
+        }
+
+        partial void Onmdlou_teacher_hours_summaryCreated(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary item);
+        partial void OnAftermdlou_teacher_hours_summaryCreated(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary item);
+
+        public async Task<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary> Createmdlou_teacher_hours_summary(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary mdlouteacherhourssummary)
+        {
+            Onmdlou_teacher_hours_summaryCreated(mdlouteacherhourssummary);
+
+            var existingItem = Context.mdlou_teacher_hours_summaries
+                              .Where(i => i.id == mdlouteacherhourssummary.id)
+                              .FirstOrDefault();
+
+            if (existingItem != null)
+            {
+               throw new Exception("Item already available");
+            }            
+
+            try
+            {
+                Context.mdlou_teacher_hours_summaries.Add(mdlouteacherhourssummary);
+                Context.SaveChanges();
+            }
+            catch
+            {
+                Context.Entry(mdlouteacherhourssummary).State = EntityState.Detached;
+                throw;
+            }
+
+            OnAftermdlou_teacher_hours_summaryCreated(mdlouteacherhourssummary);
+
+            return mdlouteacherhourssummary;
+        }
+
+        public async Task<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary> Cancelmdlou_teacher_hours_summaryChanges(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary item)
+        {
+            var entityToCancel = Context.Entry(item);
+            if (entityToCancel.State == EntityState.Modified)
+            {
+              entityToCancel.CurrentValues.SetValues(entityToCancel.OriginalValues);
+              entityToCancel.State = EntityState.Unchanged;
+            }
+
+            return item;
+        }
+
+        partial void Onmdlou_teacher_hours_summaryUpdated(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary item);
+        partial void OnAftermdlou_teacher_hours_summaryUpdated(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary item);
+
+        public async Task<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary> Updatemdlou_teacher_hours_summary(long id, TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary mdlouteacherhourssummary)
+        {
+            Onmdlou_teacher_hours_summaryUpdated(mdlouteacherhourssummary);
+
+            var itemToUpdate = Context.mdlou_teacher_hours_summaries
+                              .Where(i => i.id == mdlouteacherhourssummary.id)
+                              .FirstOrDefault();
+
+            if (itemToUpdate == null)
+            {
+               throw new Exception("Item no longer available");
+            }
+                
+            var entryToUpdate = Context.Entry(itemToUpdate);
+            entryToUpdate.CurrentValues.SetValues(mdlouteacherhourssummary);
+            entryToUpdate.State = EntityState.Modified;
+
+            Context.SaveChanges();
+
+            OnAftermdlou_teacher_hours_summaryUpdated(mdlouteacherhourssummary);
+
+            return mdlouteacherhourssummary;
+        }
+
+        partial void Onmdlou_teacher_hours_summaryDeleted(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary item);
+        partial void OnAftermdlou_teacher_hours_summaryDeleted(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary item);
+
+        public async Task<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary> Deletemdlou_teacher_hours_summary(long id)
+        {
+            var itemToDelete = Context.mdlou_teacher_hours_summaries
+                              .Where(i => i.id == id)
+                              .FirstOrDefault();
+
+            if (itemToDelete == null)
+            {
+               throw new Exception("Item no longer available");
+            }
+
+            Onmdlou_teacher_hours_summaryDeleted(itemToDelete);
+
+
+            Context.mdlou_teacher_hours_summaries.Remove(itemToDelete);
+
+            try
+            {
+                Context.SaveChanges();
+            }
+            catch
+            {
+                Context.Entry(itemToDelete).State = EntityState.Unchanged;
+                throw;
+            }
+
+            OnAftermdlou_teacher_hours_summaryDeleted(itemToDelete);
+
+            return itemToDelete;
+        }
+    
+        public async Task Exportmdlou_teacher_workloadsToExcel(Query query = null, string fileName = null)
+        {
+            navigationManager.NavigateTo(query != null ? query.ToUrl($"export/moodle_vsamk/mdlou_teacher_workloads/excel(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')") : $"export/moodle_vsamk/mdlou_teacher_workloads/excel(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')", true);
+        }
+
+        public async Task Exportmdlou_teacher_workloadsToCSV(Query query = null, string fileName = null)
+        {
+            navigationManager.NavigateTo(query != null ? query.ToUrl($"export/moodle_vsamk/mdlou_teacher_workloads/csv(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')") : $"export/moodle_vsamk/mdlou_teacher_workloads/csv(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')", true);
+        }
+
+        partial void Onmdlou_teacher_workloadsRead(ref IQueryable<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload> items);
+
+        public async Task<IQueryable<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload>> Getmdlou_teacher_workloads(Query query = null)
+        {
+            var items = Context.mdlou_teacher_workloads.AsQueryable();
+
+            items = items.Include(i => i.course);
+            items = items.Include(i => i.teacher);
+
+            if (query != null)
+            {
+                if (!string.IsNullOrEmpty(query.Expand))
+                {
+                    var propertiesToExpand = query.Expand.Split(',');
+                    foreach(var p in propertiesToExpand)
+                    {
+                        items = items.Include(p.Trim());
+                    }
+                }
+
+                ApplyQuery(ref items, query);
+            }
+
+            Onmdlou_teacher_workloadsRead(ref items);
+
+            return await Task.FromResult(items);
+        }
+
+        partial void Onmdlou_teacher_workloadGet(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload item);
+        partial void OnGetmdlou_teacher_workloadById(ref IQueryable<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload> items);
+
+
+        public async Task<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload> Getmdlou_teacher_workloadById(long id)
+        {
+            var items = Context.mdlou_teacher_workloads
+                              .AsNoTracking()
+                              .Where(i => i.id == id);
+
+            items = items.Include(i => i.course);
+            items = items.Include(i => i.teacher);
+ 
+            OnGetmdlou_teacher_workloadById(ref items);
+
+            var itemToReturn = items.FirstOrDefault();
+
+            Onmdlou_teacher_workloadGet(itemToReturn);
+
+            return await Task.FromResult(itemToReturn);
+        }
+
+        partial void Onmdlou_teacher_workloadCreated(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload item);
+        partial void OnAftermdlou_teacher_workloadCreated(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload item);
+
+        public async Task<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload> Createmdlou_teacher_workload(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload mdlouteacherworkload)
+        {
+            Onmdlou_teacher_workloadCreated(mdlouteacherworkload);
+
+            var existingItem = Context.mdlou_teacher_workloads
+                              .Where(i => i.id == mdlouteacherworkload.id)
+                              .FirstOrDefault();
+
+            if (existingItem != null)
+            {
+               throw new Exception("Item already available");
+            }            
+
+            try
+            {
+                Context.mdlou_teacher_workloads.Add(mdlouteacherworkload);
+                Context.SaveChanges();
+            }
+            catch
+            {
+                Context.Entry(mdlouteacherworkload).State = EntityState.Detached;
+                throw;
+            }
+
+            OnAftermdlou_teacher_workloadCreated(mdlouteacherworkload);
+
+            return mdlouteacherworkload;
+        }
+
+        public async Task<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload> Cancelmdlou_teacher_workloadChanges(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload item)
+        {
+            var entityToCancel = Context.Entry(item);
+            if (entityToCancel.State == EntityState.Modified)
+            {
+              entityToCancel.CurrentValues.SetValues(entityToCancel.OriginalValues);
+              entityToCancel.State = EntityState.Unchanged;
+            }
+
+            return item;
+        }
+
+        partial void Onmdlou_teacher_workloadUpdated(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload item);
+        partial void OnAftermdlou_teacher_workloadUpdated(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload item);
+
+        public async Task<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload> Updatemdlou_teacher_workload(long id, TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload mdlouteacherworkload)
+        {
+            Onmdlou_teacher_workloadUpdated(mdlouteacherworkload);
+
+            var itemToUpdate = Context.mdlou_teacher_workloads
+                              .Where(i => i.id == mdlouteacherworkload.id)
+                              .FirstOrDefault();
+
+            if (itemToUpdate == null)
+            {
+               throw new Exception("Item no longer available");
+            }
+                
+            var entryToUpdate = Context.Entry(itemToUpdate);
+            entryToUpdate.CurrentValues.SetValues(mdlouteacherworkload);
+            entryToUpdate.State = EntityState.Modified;
+
+            Context.SaveChanges();
+
+            OnAftermdlou_teacher_workloadUpdated(mdlouteacherworkload);
+
+            return mdlouteacherworkload;
+        }
+
+        partial void Onmdlou_teacher_workloadDeleted(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload item);
+        partial void OnAftermdlou_teacher_workloadDeleted(TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload item);
+
+        public async Task<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload> Deletemdlou_teacher_workload(long id)
+        {
+            var itemToDelete = Context.mdlou_teacher_workloads
+                              .Where(i => i.id == id)
+                              .FirstOrDefault();
+
+            if (itemToDelete == null)
+            {
+               throw new Exception("Item no longer available");
+            }
+
+            Onmdlou_teacher_workloadDeleted(itemToDelete);
+
+
+            Context.mdlou_teacher_workloads.Remove(itemToDelete);
+
+            try
+            {
+                Context.SaveChanges();
+            }
+            catch
+            {
+                Context.Entry(itemToDelete).State = EntityState.Unchanged;
+                throw;
+            }
+
+            OnAftermdlou_teacher_workloadDeleted(itemToDelete);
 
             return itemToDelete;
         }

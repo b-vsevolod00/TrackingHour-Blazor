@@ -27,6 +27,9 @@ builder.Services.AddControllers().AddOData(opt =>
     oDataBuildermoodle_vsamk.EntitySet<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_course>("mdlou_courses");
     oDataBuildermoodle_vsamk.EntitySet<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_group>("mdlou_groups");
     oDataBuildermoodle_vsamk.EntitySet<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_user>("mdlou_users");
+    oDataBuildermoodle_vsamk.EntitySet<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hour>("mdlou_teacher_hours");
+    oDataBuildermoodle_vsamk.EntitySet<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_hours_summary>("mdlou_teacher_hours_summaries");
+    oDataBuildermoodle_vsamk.EntitySet<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_teacher_workload>("mdlou_teacher_workloads");
     opt.AddRouteComponents("odata/moodle_vsamk", oDataBuildermoodle_vsamk.GetEdmModel()).Count().Filter().OrderBy().Expand().Select().SetMaxTop(null).TimeZone = TimeZoneInfo.Utc;
 });
 builder.Services.AddScoped<TrackHourBlazor.Client.moodle_vsamkService>();

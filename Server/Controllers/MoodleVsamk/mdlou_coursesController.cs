@@ -66,13 +66,20 @@ namespace TrackHourBlazor.Server.Controllers.moodle_vsamk
                 }
 
 
-                var item = this.context.mdlou_courses
+                var items = this.context.mdlou_courses
                     .Where(i => i.id == key)
-                    .FirstOrDefault();
+                    .Include(i => i.mdlou_teacher_hours)
+                    .Include(i => i.mdlou_teacher_hours_summaries)
+                    .Include(i => i.mdlou_teacher_workloads)
+                    .AsQueryable();
+
+                items = Data.EntityPatch.ApplyTo<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_course>(Request, items);
+
+                var item = items.FirstOrDefault();
 
                 if (item == null)
                 {
-                    return BadRequest();
+                    return StatusCode((int)HttpStatusCode.PreconditionFailed);
                 }
                 this.Onmdlou_courseDeleted(item);
                 this.context.mdlou_courses.Remove(item);
@@ -103,9 +110,17 @@ namespace TrackHourBlazor.Server.Controllers.moodle_vsamk
                     return BadRequest(ModelState);
                 }
 
-                if (item == null || (item.id != key))
+                var items = this.context.mdlou_courses
+                    .Where(i => i.id == key)
+                    .AsQueryable();
+
+                items = Data.EntityPatch.ApplyTo<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_course>(Request, items);
+
+                var firstItem = items.FirstOrDefault();
+
+                if (firstItem == null)
                 {
-                    return BadRequest();
+                    return StatusCode((int)HttpStatusCode.PreconditionFailed);
                 }
                 this.Onmdlou_courseUpdated(item);
                 this.context.mdlou_courses.Update(item);
@@ -134,11 +149,17 @@ namespace TrackHourBlazor.Server.Controllers.moodle_vsamk
                     return BadRequest(ModelState);
                 }
 
-                var item = this.context.mdlou_courses.Where(i => i.id == key).FirstOrDefault();
+                var items = this.context.mdlou_courses
+                    .Where(i => i.id == key)
+                    .AsQueryable();
+
+                items = Data.EntityPatch.ApplyTo<TrackHourBlazor.Server.Models.moodle_vsamk.mdlou_course>(Request, items);
+
+                var item = items.FirstOrDefault();
 
                 if (item == null)
                 {
-                    return BadRequest();
+                    return StatusCode((int)HttpStatusCode.PreconditionFailed);
                 }
                 patch.Patch(item);
 
